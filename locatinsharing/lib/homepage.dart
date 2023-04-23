@@ -4,13 +4,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as latLng;
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:locatinsharing/Navigation/screens/prepare_ride.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart' as per;
 
 import 'homepage.dart';
-import 'Navigation/navigation.dart';
+import 'Navigation/screens/navigation.dart';
 import 'SOS/SOS.dart';
 import 'ShareLoc/ShareLoc.dart';
 import 'NearbyMe/NearbyMe.dart';

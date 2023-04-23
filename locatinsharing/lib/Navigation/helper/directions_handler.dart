@@ -1,13 +1,12 @@
 // import 'dart:convert';
-
+import 'package:latlong2/latlong.dart' as ll;
 import 'dart:convert';
-
 import 'package:mapbox_gl/mapbox_gl.dart';
-import '../main.dart';
+import '../../main.dart';
+import '../requests/mapbox_requests.dart';
+import '../requests/mapbox_rev_geocoding.dart';
+import '../requests/mapbox_search.dart';
 
-import 'mapbox_requests.dart';
-import 'requests/mapbox_rev_geocoding.dart';
-import 'requests/mapbox_search.dart';
 
 // -- Mapbox Search Query --
 String getValidatedQueryFromQuery(String query) {
@@ -24,7 +23,7 @@ Future<List> getParsedResponseForQuery(String value) async {
   if (query == '') return parsedResponses;
 
   // Else search and then send response
-  var response = json.decode(await getSearchResultsFromQueryUsingMapbox(query));
+  final response = await getSearchResultsFromQueryUsingMapbox(query);
 
   List features = response['features'];
   for (var feature in features) {
@@ -41,8 +40,10 @@ Future<List> getParsedResponseForQuery(String value) async {
 
 // -- Mapbox Reverse Geocoding --
 Future<Map> getParsedReverseGeocoding (LatLng latLng) async{
-  var response = json.decode(await getReverseGeocodingGivenLatLngUsingMapbox(latLng));
+  final response = await getReverseGeocodingGivenLatLngUsingMapbox(latLng);
   Map feature = response['features'][0];
+  // String st = response['features'][0]['place_name'];
+  // print(st);
   Map revGeocode = {
     'name': feature['text'],
     'address': feature['place_name'].split('${feature['text']}, ')[1],
